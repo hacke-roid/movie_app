@@ -1,0 +1,13 @@
+.display_container{
+    /* width: 80%; */
+    border: 2px solid red;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.display{
+    width: 70%;
+    border: 2px solid black;
+    padding: 20px;
+}
