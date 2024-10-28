@@ -1,66 +1,74 @@
-.display_container{
-    /* width: 80%; */
-    /* border: 2px solid red; */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
+.display_container {
+  /* width: 80%; */
+  /* border: 2px solid red; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  background-image: linear-gradient(-135deg, yellow, #f5b848);
+  padding: 20px 0;
+  margin: 20px;
+  border-radius: 20px;
 }
 
-.display{
-    width: 70%;
-    border: 2px solid #ffd52d;
-    padding: 20px;
-    border-radius: 20px;
-    display: flex;
-    flex-direction: column;
+.display {
+    padding: 20px ;
+  width: 70%;
+  /* border: 2px solid #ffd52d; */
+  padding: 20px;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  /* color: white; */
+  background-color: white;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.img_container{
-    width: 350px;
-    height: 500px;
-    /* display: flex; */
-    /* border: 2px solid black; */
+.img_container {
+  width: 350px;
+  height: 500px;
+  /* display: flex; */
+  /* border: 2px solid black; */
 }
 
-.Poster_img{
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 20px;
-    /* border: 2px solid black ; */
-    /* float: left; */
-    /* padding: 10px; */
+.Poster_img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 20px;
+  /* border: 2px solid black ; */
+  /* float: left; */
+  /* padding: 10px; */
 }
 
-.display>span{
-    font-weight: bold;
-    font-size: medium;
-    padding: 5px;
+.display > span {
+  font-weight: bold;
+  font-size: medium;
+  padding: 5px;
 }
 
-.display>h1{
-    /* border-bottom: #ffd52d; */
-    border-bottom: 2px solid #ffd52d;
+.display > h1 {
+  /* border-bottom: #ffd52d; */
+  border-bottom: 2px solid #ffd52d;
 }
 
-.rating_container{
-    display: flex;
-    flex-direction: column;
+.rating_container {
+  display: flex;
+  flex-direction: column;
 }
 
-.director_container{
-    border-bottom: 1px solid gray;
+.director_container {
+  border-bottom: 1px solid gray;
 }
 
-.stars_container{
-    border-bottom: 1px solid grey;
+.stars_container {
+  border-bottom: 1px solid grey;
 }
 
-.writers_container{
-    border-bottom: 1px solid gray;
+.writers_container {
+  border-bottom: 1px solid gray;
 }
 
-a{
-    text-decoration: none;
+a {
+  text-decoration: none;
 }

@@ -11,6 +11,7 @@
   background-image: linear-gradient(-135deg, yellow, #f5b848);
   /* background-color: rgb(41, 41, 41); */
   /* color: white; */
+  margin: 20px;
 }
 
 .dashboard_movie_container {
