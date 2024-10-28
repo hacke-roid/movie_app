@@ -5,7 +5,7 @@ const fetchWebApi =async (tickers) => {
   try{
     // const apiKey = "1e2cd287"
 
-  let res =await fetch(`http://www.omdbapi.com/?t=${tickers}&apikey=1e2cd287`);
+  let res =await fetch(`https://www.omdbapi.com/?t=${tickers}&apikey=1e2cd287`);
 
   console.log(res)
   
