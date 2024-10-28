@@ -12,7 +12,7 @@ const DisplaySearch = ({ data }) => {
         <span> . {data.Released}</span>
 
         <div>
-          <img src={data.Poster} />
+          <img src={data.Poster} alt=""/>
         </div>
         <div>
           <p>{data.Plot}</p>
