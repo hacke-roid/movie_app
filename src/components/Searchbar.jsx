@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import fetchWebApi from "../Api";
-// import { FaSearch } from "react-icons/fa";
 import "./SearchBar.css";
 import LOGO from "../movie_app_logo.jpg";
 
@@ -12,7 +11,6 @@ const Searchbar = ({ onSearch }) => {
     e.preventDefault();
     try {
       let data = await fetchWebApi(inputText);
-      
       console.log(data);
       onSearch(data);
     } catch (error) {
