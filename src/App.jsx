@@ -14,8 +14,8 @@ const App = () => {
   const handleSearch = (term) => {
     console.log(term)
     // console.log(term.Title)
-    let numerator = Math.floor(parseInt(term.Ratings[0].Value[0]));
-    console.log(numerator);
+    let numerator = Math.floor(Math.parseInt(term.Ratings[0].Value[0]));
+    // console.log(numerator);
     setData(term);
     setIsRating(numerator);
   };

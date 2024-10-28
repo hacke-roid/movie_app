@@ -17,10 +17,7 @@ const DashBoard = ({onClick}) => {
       "Ad Astra",
       "Greenland",
     ];
-      let a= keywords.map(element => {
-            console.log(element)
-        });
-        console.log(a)
+     
     // console.log(a)
     return keywords[Math.floor(Math.random() * keywords.length)];
   };
