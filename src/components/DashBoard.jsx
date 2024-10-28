@@ -2,8 +2,10 @@ import React, { useEffect, useState } from "react";
 import "./DashBoard.css";
 import DetailFetchApi from "../DetailApi";
 
-const DashBoard = ({onClick}) => {
+const DashBoard = ({ onClick }) => {
   const [movies, setMovies] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   const getRandomKeyword = () => {
     const keywords = [
@@ -18,55 +20,63 @@ const DashBoard = ({onClick}) => {
       "Ad Astra",
       "Greenland",
     ];
-     
-    // console.log(a)
     return keywords[Math.floor(Math.random() * keywords.length)];
   };
 
   const fetchDashBoard = async () => {
+    setLoading(true);
+    setError(null);
     const fetchedMovies = new Set();
+    let retries = 0;
 
-    while (fetchedMovies.size < 10) {
+    while (fetchedMovies.size < 10 && retries < 20) {
       const keyword = getRandomKeyword();
-    //   console.log(keyword);
-      // console.log(a)
-      let response = await fetch(
-        `http://www.omdbapi.com/?t=${keyword}&apikey=1e2cd287`
-      );
-      let data = await response.json();
+      try {
+        const response = await fetch(
+          `http://www.omdbapi.com/?t=${keyword}&apikey=1e2cd287`
+        );
+        const data = await response.json();
 
-      if (data && data.Response !== "False") {
-        fetchedMovies.add(data);
+        if (data && data.Response !== "False" && !fetchedMovies.has(data.Title)) {
+          fetchedMovies.add(data);
+        }
+      } catch (error) {
+        console.error("Failed to fetch movie:", error);
+        setError("Failed to load movies. Please try again later.");
       }
+      retries += 1;
     }
 
-    const shuffledMovies = Array.from(fetchedMovies).sort(
-      () => Math.random() - 1
-    );
-
-    setMovies(shuffledMovies);
+    setMovies(Array.from(fetchedMovies).sort(() => Math.random() - 0.5));
+    setLoading(false);
   };
 
   useEffect(() => {
     fetchDashBoard();
   }, []);
 
-  const handleCLickTitle = async(tickers) => {
-
-    let response = await DetailFetchApi(tickers)
-    console.log(response);
-    onClick(response);
+  const handleClickTitle = async (title) => {
+    try {
+      const response = await DetailFetchApi(title);
+      console.log(response);
+      onClick(response);
+    } catch (error) {
+      console.error("Failed to fetch details:", error);
+      setError("Failed to load details. Please try again later.");
+    }
   };
+
+  if (loading) return <p>Loading movies...</p>;
+  if (error) return <p>{error}</p>;
 
   return (
     <div>
-      {/* <h1>Dashboard</h1> */}
       <div className="dashboard-container">
         {movies.map((movie, index) => (
           <div
             key={index}
             className="dashboard_movie_container"
-            onClick={() => handleCLickTitle(movie.Title)}
+            onClick={() => handleClickTitle(movie.Title)}
           >
             <h2>{movie.Title}</h2>
             <p>{movie.Year}</p>
