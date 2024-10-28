@@ -1,39 +1,49 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 // import fetchingApi from './Api.jsx'
 import Searchbar from "./components/Searchbar.jsx";
 import DisplaySearch from "./components/DisplaySearch.jsx";
 import DashBoard from "./components/DashBoard.jsx";
 import "./App.css";
 import fetchWebApi from "./Api.jsx";
+import { useNavigate } from "react-router-dom";
 
-const App = () => {
+// import DetailFetchApi from "./DetailApi.jsx";
+
+const App = ({ onSearch }) => {
+
+  const navigate = useNavigate();
   const [data, setData] = useState([]);
   const [isRating, setIsRating] = useState();
 
+  
   // console.log(data)
   const handleSearch = (term) => {
-    console.log(term)
-    // console.log(term.Title)
-    let numerator = Math.floor(parseInt(term.Ratings[0].Value[0]));
-    // console.log(numerator);
+    console.log(term);
     setData(term);
-    setIsRating(numerator);
+    setIsRating();
   };
 
   const handleSearchDashboard = async (term) => {
-    console.log(term)
+    console.log(term);
     let value = await fetchWebApi(term);
-    console.log(value)
+    console.log(value);
     setData(value);
+  };
+
+  const handleSearchTerm = (rating) => {
+    console.log(rating);
+    setData(rating);
+    onSearch(rating)
+    navigate('/overview')
   };
 
   return (
     <div className="App_container">
       <Searchbar onSearch={handleSearch} />
-      {data.Title ? (
-        <DisplaySearch data={data} Rating={isRating} />
+      {data[0] ? (
+        <DisplaySearch data={data} onSearch={handleSearchTerm}/>
       ) : (
-        <DashBoard onClick={handleSearchDashboard}/>
+        <DashBoard onClick={handleSearchTerm} />
       )}
     </div>
   );

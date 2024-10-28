@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./DashBoard.css";
+import DetailFetchApi from "../DetailApi";
 
 const DashBoard = ({onClick}) => {
   const [movies, setMovies] = useState([]);
@@ -50,9 +51,11 @@ const DashBoard = ({onClick}) => {
     fetchDashBoard();
   }, []);
 
-  const handleCLickTitle = (tickers) => {
-    console.log(tickers);
-    onClick(tickers);
+  const handleCLickTitle = async(tickers) => {
+
+    let response = await DetailFetchApi(tickers)
+    console.log(response);
+    onClick(response);
   };
 
   return (
