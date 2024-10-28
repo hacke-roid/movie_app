@@ -33,7 +33,7 @@ const DashBoard = ({ onClick }) => {
       const keyword = getRandomKeyword();
       try {
         const response = await fetch(
-          `http://www.omdbapi.com/?t=${keyword}&apikey=1e2cd287`
+          `https://www.omdbapi.com/?t=${keyword}&apikey=1e2cd287`
         );
         const data = await response.json();
 
