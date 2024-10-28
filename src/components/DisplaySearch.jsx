@@ -1,10 +1,10 @@
 import React from "react";
 import "./DisplaySearch.css";
-import { FaStar } from "react-icons/fa";
+// import { FaStar } from "react-icons/fa";
 
 const DisplaySearch = ({ data, Rating }) => {
   console.log(Rating);
-  
+
   return (
     <div className="display_container">
       <div className="display">
@@ -27,11 +27,7 @@ const DisplaySearch = ({ data, Rating }) => {
                   <div>
                     <span key={m.Source}>
                       {m.Source} -{" "}
-                      <FaStar
-                        style={{
-                          color: "yellow",
-                        }}
-                      />{" "}
+                      {" "}
                       {m.Value}
                     </span>
                   </div>
