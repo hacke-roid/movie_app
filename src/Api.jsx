@@ -1,21 +1,19 @@
-const fetchWebApi =async (tickers) => {
-  // let api_key = '069ef05253864d9c0efb00fc0cdbebac'
-  // console.log(process.env); // This will print all environment variables
+const fetchWebApi = async (tickers) => {
+  const movieApiKey = "1e2cd287"
+  try {
+    const res = await fetch(`https://www.omdbapi.com/?t=${tickers}&apikey=${movieApiKey}`); // Change to HTTPS
 
-  try{
-    // const apiKey = "1e2cd287"
+    if (!res.ok) {
+      throw new Error(`Error: ${res.status} - ${res.statusText}`);
+    }
 
-  let res =await fetch(`https://www.omdbapi.com/?t=${tickers}&apikey=1e2cd287`);
-
-  console.log(res)
-  
-  let finalData = await res.json()
-  console.log(finalData)
-  return finalData
+    const finalData = await res.json();
+    console.log(finalData);
+    return finalData;
+  } catch (err) {
+    console.error("Fetch error:", err);
+    return null; // Handle the error as needed
   }
-  catch(err){
-    console.error(err)
-  }
-}
+};
 
-export default fetchWebApi
+export default fetchWebApi;
