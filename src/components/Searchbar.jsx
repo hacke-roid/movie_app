@@ -12,6 +12,7 @@ const Searchbar = ({ onSearch }) => {
     e.preventDefault();
     try {
       let data = await fetchWebApi(inputText);
+      
       console.log(data);
       onSearch(data);
     } catch (error) {
