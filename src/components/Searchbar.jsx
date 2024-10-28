@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import fetchWebApi from "../Api";
 import "./SearchBar.css";
-import { FaSearch } from "react-icons/fa";
+// import { FaSearch } from "react-icons/fa";
 import LOGO from "../movie_app_logo.jpg";
 
 const Searchbar = ({ onSearch }) => {
@@ -31,8 +31,7 @@ const Searchbar = ({ onSearch }) => {
       <div className={`box ${isExpanded ? "expanded" : ""}`}>
         <form onSubmit={handleSubmit}>
           <div>
-            {/* <FaSearch className="i" /> */}
-            <FaSearch />
+           
             <input
               type="text"
               value={inputText}
