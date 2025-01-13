@@ -15,7 +15,7 @@ const AppRoutes = () => {
         <Route path="/" element={<App onSearch={handleSearch} />} />
         {/* <Route path="/search" element={<DisplaySearch />} /> */}
         {/* <Route path="/dashboard" element={<DashBoard />} /> */}
-        <Route path="/overview" element={<DetailOverview data={data}/>} />
+        <Route path="/overview/:eid" element={<DetailOverview data={data}/>} />
       </Routes>
     </Router>
   );

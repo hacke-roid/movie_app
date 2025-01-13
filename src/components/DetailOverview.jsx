@@ -1,29 +1,30 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./DetailOverview.css";
+import { useParams } from "react-router-dom";
 
-const DetailOverview = ({ data }) => {
-  console.log(data);
+const DetailOverview = () => {
+  // console.log(data);
+  const [data, setData] = useState({});
+  const { eid } = useParams();
+  console.log(eid);
+  console.log(data.Ratings)
+  const getMovie = async (e) => {
+    console.log("inside get movie");
+    try {
+      const response = await fetch(
+        `https://www.omdbapi.com/?i=${eid}&apikey=1e2cd287`
+      );
+      const datas = await response.json();
+      console.log(datas);
+      setData(datas);
+    } catch (error) {
+      console.error("Failed to fetch movie:", error);
+    }
+  };
 
   useEffect(() => {
-    // Store data in localStorage when it changes
-    if (data) {
-      localStorage.setItem("movieData", JSON.stringify(data));
-    }
-  }, [data]);
-
-  useEffect(() => {
-    // Check localStorage for existing data on component mount
-    const storedData = localStorage.getItem("movieData");
-    if (storedData) {
-      // If data exists, parse it and set it to the component's state or props
-      // You may need to handle this in the parent component
-      // Here we log it to verify it's working
-      console.log("Loaded data from localStorage:", JSON.parse(storedData));
-    }
-    console.log(storedData)
-  }, []);
-
-  
+    getMovie();
+  },[]);
 
   return (
     <div className="contain">
@@ -43,8 +44,8 @@ const DetailOverview = ({ data }) => {
             <p>{data.Plot}</p>
           </div>
           <div className="rating_container">
-            {data.Ratings.map((m) => (
-              <span key={m.Source}>
+            {data.Ratings?.map((m) => (
+              <span>
                 {m.Source} - {m.Value}
               </span>
             ))}
@@ -52,9 +53,9 @@ const DetailOverview = ({ data }) => {
           <div className="director_container">
             <h3>
               Director{" "}
-              {data.Director.split(" ").map((director) => (
+              {data.Director?.split(" ").map((director) => (
                 <a href={director} key={director}>
-                  {director}
+                  {director},
                 </a>
               ))}
             </h3>
@@ -62,9 +63,9 @@ const DetailOverview = ({ data }) => {
           <div className="stars_container">
             <h3>
               Stars{" "}
-              {data.Actors.split(", ").map((actor, index) => (
+              {data.Actors?.split(", ").map((actor, index) => (
                 <a href={actor} key={index}>
-                  {actor}
+                  {actor},
                 </a>
               ))}
             </h3>
@@ -72,13 +73,13 @@ const DetailOverview = ({ data }) => {
           <div className="writers_container">
             <h3>
               Writers{" "}
-              {data.Writer.split(", ").map((writer) => (
+              {data.Writer?.split(", ").map((writer) => (
                 <a href={writer} key={writer}>
-                  {writer}
+                  {writer},
                 </a>
               ))}
             </h3>
-          </div>
+          </div>  
         </div>
       </div>
     </div>

@@ -1,12 +1,8 @@
 const DetailFetchApi = async (tickers) => {
-    const movieApiKey = "1e2cd287"
+    // const movieApiKey = "1e2cd287"
   try {
-    const res = await fetch(`https://www.omdbapi.com/?t=${tickers}&apikey=${movieApiKey}`); // Change to HTTPS
-
-    if (!res.ok) {
-      throw new Error(`Error: ${res.status} - ${res.statusText}`);
-    }
-
+    const res = await fetch(`https://www.omdbapi.com/?i=${tickers}&apikey=1e2cd287`); // Change to HTTPS
+    console.log(res)
     const finalData = await res.json();
     console.log(finalData);
     return finalData;

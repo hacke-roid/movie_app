@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./DashBoard.css";
 import DetailFetchApi from "../DetailApi";
+import { Link } from "react-router-dom";
 
 const DashBoard = ({ onClick }) => {
   const [movies, setMovies] = useState([]);
@@ -36,8 +37,12 @@ const DashBoard = ({ onClick }) => {
           `https://www.omdbapi.com/?t=${keyword}&apikey=1e2cd287`
         );
         const data = await response.json();
-
-        if (data && data.Response !== "False" && !fetchedMovies.has(data.Title)) {
+        console.log(data)
+        if (
+          data &&
+          data.Response !== "False" &&
+          !fetchedMovies.has(data.Title)
+        ) {
           fetchedMovies.add(data);
         }
       } catch (error) {
@@ -73,19 +78,21 @@ const DashBoard = ({ onClick }) => {
     <div>
       <div className="dashboard-container">
         {movies.map((movie, index) => (
-          <div
-            key={index}
-            className="dashboard_movie_container"
-            onClick={() => handleClickTitle(movie.Title)}
-          >
-            <h2>{movie.Title}</h2>
-            <p>{movie.Year}</p>
-            <img
-              src={movie.Poster}
-              alt={`${movie.Title} Poster`}
-              className="dashboard_img"
-            />
-          </div>
+          <Link to={`/overview/${movie.imdbID}`}>
+            <div
+              key={index}
+              className="dashboard_movie_container"
+              
+            >
+              <h2>{movie.Title}</h2>
+              <p>{movie.Year}</p>
+              <img
+                src={movie.Poster}
+                alt={`${movie.Title} Poster`}
+                className="dashboard_img"
+              />
+            </div>
+          </Link>
         ))}
       </div>
     </div>
